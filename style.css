@@ -1,11 +1,12 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #ad4ed3, #52097c);
+  /* Fundo roxo e rosa/roxo mais vibrante */
+  background: linear-gradient(135deg, #7b1fa2, #4a148c);
   background-size: 200% 200%;
-  animation: gradientMove 6s ease infinite;
-  height: 100vh;
-  overflow: hidden;
+  animation: gradientMove 10s ease infinite; /* Animação mais lenta */
+  min-height: 100vh; /* Usa min-height para melhor compatibilidade móvel */
+  overflow-x: hidden; /* Garante que não haja rolagem horizontal */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,55 +20,53 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-h1 {
-  color: white;
-  font-size: 2.2rem;
-  text-align: center;
-  opacity: 0.9;
-  margin-top: 20px;
-  animation: pulse 2s infinite ease-in-out;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.05); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.9; }
-}
-
-/* 🎁 Presente estilizado */
+/* 🎁 Presente estilizado (Mais bonito e com glow) */
 .gift {
-  width: 140px;
+  width: 150px;
   height: 100px;
-  background: linear-gradient(180deg, #ff4e78, #ff6b81);
+  /* Corpo vermelho/rosa mais profundo */
+  background: linear-gradient(180deg, #e53965, #c2185b);
   border-radius: 10px;
   position: relative;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+  /* Sombra para efeito 3D e 'glow' para indicar clique */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px 5px rgba(255, 105, 180, 0.7);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: giftGlow 2s infinite alternate; /* Novo efeito glow */
 }
 
 .gift:hover {
-  transform: scale(1.1);
+  transform: scale(1.15); /* Aumenta mais no hover */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); /* Sombra mais intensa */
+  animation-play-state: paused; /* Para o glow no hover */
+}
+
+@keyframes giftGlow {
+  from { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 15px 3px rgba(255, 105, 180, 0.4); }
+  to { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px 6px rgba(255, 105, 180, 0.9); }
 }
 
 .lid {
-  width: 150px;
+  width: 160px; /* Maior que o corpo */
   height: 40px;
-  background: linear-gradient(180deg, #652a8b, #ff5e78);
+  /* Tampa roxa escura, combinando com o fundo */
+  background: linear-gradient(180deg, #6a1b9a, #4a148c);
   border-radius: 8px;
   position: absolute;
   top: -40px;
   left: -5px;
-  transition: transform 0.5s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  /* Efeito elástico ao abrir */
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease;
 }
 
 .ribbon {
   position: absolute;
-  background-color: #fff;
+  background-color: #fce4ec; /* Fita rosa bem clara */
 }
 
 .ribbon.vertical {
-  width: 20px;
+  width: 25px; /* Fita mais grossa */
   height: 100%;
   left: 50%;
   transform: translateX(-50%);
@@ -75,47 +74,48 @@ h1 {
 
 .ribbon.horizontal {
   width: 100%;
-  height: 20px;
+  height: 25px; /* Fita mais grossa */
   top: 50%;
   transform: translateY(-50%);
 }
 
 .bow {
   position: absolute;
-  top: -55px;
+  top: -60px; /* Um pouco mais alto */
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
-  height: 30px;
-  background: radial-gradient(circle, #fff 40%, #ffb6c1 90%);
+  width: 70px; /* Laço maior */
+  height: 35px;
+  /* Gradiente com mais brilho */
+  background: radial-gradient(circle, #fff 40%, #ffc0cb 90%);
   border-radius: 50%;
-  box-shadow: 0 0 15px rgba(255,255,255,0.5);
+  box-shadow: 0 0 20px rgba(255,255,255,0.8); /* Brilho intenso */
 }
 
 .bow::before, .bow::after {
   content: "";
   position: absolute;
-  width: 60px;
-  height: 30px;
-  background: radial-gradient(circle, #fff 40%, #ffb6c1 90%);
+  width: 70px;
+  height: 35px;
+  background: radial-gradient(circle, #fff 40%, #ffc0cb 90%);
   border-radius: 50%;
   top: 0;
 }
 
-.bow::before { left: -40px; transform: rotate(-25deg); }
-.bow::after { right: -40px; transform: rotate(25deg); }
+.bow::before { left: -45px; transform: rotate(-30deg); }
+.bow::after { right: -45px; transform: rotate(30deg); }
 
-/* ❤️ Corações flutuantes */
+/* ❤️ Corações flutuantes mais suaves */
 .heart {
   position: absolute;
   color: rgba(255, 255, 255, 0.85);
-  font-size: 20px;
-  animation: floatUp 6s linear infinite;
+  font-size: 30px; /* Aumenta o tamanho */
+  animation: floatUp 8s linear infinite; /* Animação mais lenta */
 }
 
 @keyframes floatUp {
   0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-700px) scale(1.6); opacity: 0; }
+  100% { transform: translateY(-700px) scale(2); opacity: 0; }
 }
 
 .hidden { display: none; }
@@ -131,22 +131,26 @@ h1 {
   background: #fffdf5;
   padding: 30px 40px;
   border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3); /* Sombra mais profunda */
   border: 1px solid #f1e2c6;
-  max-width: 600px;
-  line-height: 1.7;
+  max-width: 650px;
+  line-height: 1.8;
   color: #3a2e1f;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   animation: slideUp 1.2s ease forwards;
   transform: translateY(30px);
   opacity: 0;
   background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
-  background-size: 100% 28px;
+  background-size: 100% 30px;
+}
+
+.paper p {
+    font-size: 1rem;
 }
 
 .paper-title {
   font-family: "Great Vibes", cursive;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   margin-bottom: 20px;
   color: #9c4dcc;
 }
@@ -156,4 +160,66 @@ h1 {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+/* ==================================== */
+/* 📱 RESPONSIVIDADE (Mobile) */
+/* ==================================== */
+@media (max-width: 480px) {
+    
+    /* Diminui o texto principal e o espaçamento */
+    .paper {
+        max-width: 90vw; /* Limita a largura da carta a 90% da tela */
+        padding: 20px 25px; /* Diminui o padding interno */
+        line-height: 1.6;
+        font-size: 1rem; /* Diminui o tamanho da fonte da carta */
+        background-size: 100% 25px; /* Ajusta a linha guia da carta */
+    }
+
+    .paper-title {
+        font-size: 1.8rem; /* Diminui o título da carta */
+    }
+
+    .paper p {
+        font-size: 0.9rem; /* Diminui o texto do corpo da mensagem */
+    }
+
+    /* Diminui o presente e seus componentes */
+    .gift {
+        width: 120px; /* Presente menor */
+        height: 80px;
+    }
+    
+    .lid {
+        width: 130px; /* Tampa menor */
+        height: 35px;
+        top: -35px;
+        left: -5px;
+    }
+
+    .ribbon.vertical {
+        width: 20px; /* Fita menor */
+    }
+    
+    .ribbon.horizontal {
+        height: 20px; /* Fita menor */
+    }
+
+    .bow {
+        top: -50px;
+        width: 50px; /* Laço menor */
+        height: 25px;
+    }
+    
+    .bow::before, .bow::after {
+        width: 50px;
+        height: 25px;
+    }
+    .bow::before { left: -35px; }
+    .bow::after { right: -35px; }
+    
+    /* Torna os corações um pouco menores */
+    .heart {
+        font-size: 20px; 
+    }
 }
