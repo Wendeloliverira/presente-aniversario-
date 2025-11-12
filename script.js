@@ -1,23 +1,38 @@
+// script.js (SUBSTITUIR AS REGRAS EXISTENTES)
+
 const giftBox = document.getElementById("giftBox");
 const lid = document.getElementById("lid");
-const title = document.getElementById("title");
+// const title = document.getElementById("title"); // REMOVIDO!
 const message = document.getElementById("message");
 
 giftBox.addEventListener("click", () => {
-  lid.style.transform = "translateY(-80px) rotate(-10deg)";
+  // 1. Abertura da Tampa com efeito elástico (curva no CSS)
+  lid.style.transform = "translateY(-180px) rotate(45deg)"; // Lança a tampa mais alto e roda
+  lid.style.opacity = "0"; // Faz a tampa sumir
+  
+  // 2. Remoção do Presente
   setTimeout(() => {
+    // Diminui o presente antes de esconder
+    giftBox.style.transform = "scale(0.01)"; // Efeito de encolhimento
     giftBox.style.opacity = "0";
-    title.style.opacity = "0";
+    
+    // 3. Exibição da Mensagem e Confete
     setTimeout(() => {
       giftBox.style.display = "none";
-      title.style.display = "none";
+      // title.style.display = "none"; // REMOVIDO!
+      
       message.classList.remove("hidden");
       createConfetti();
-    }, 500);
-  }, 800);
+      
+    }, 400); // 0.4s após o presente começar a encolher
+  }, 500); // 0.5s após o clique (espera um pouco a tampa abrir)
 });
 
-// ❤️ Corações flutuantes
+
+// ... (Manter as funções createHeart e createConfetti como estão no seu projeto original ou usar as sugestões de melhoria de confete que fiz antes)
+
+
+// ❤️ Corações flutuantes (Mantendo a função original para não forçar a mudança)
 function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
@@ -34,7 +49,7 @@ function createHeart() {
 
 setInterval(createHeart, 400);
 
-// 🎉 Confete
+// 🎉 Confete (Mantendo a função original)
 function createConfetti() {
   for (let i = 0; i < 60; i++) {
     const confetti = document.createElement("div");
